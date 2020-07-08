@@ -1,0 +1,16 @@
+<div class="container">
+	<form [formGroup]="form">
+		<div style="margin-top: 10px" class="form-group">
+			<input formControlName="FirstName" class="form-control" placeholder="Enter Name">
+			<div *ngIf="firstname.errors && (firstname.dirty || firstname.touched); else valid" class="validation-error">
+				<div *ngIf="firstname.errors.required">Name is required.</div>
+				<div *ngIf="firstname.errors.minlength">Name must be at least 3 characters long.</div>
+				<div *ngIf="firstname.errors.forbiddenName"> Name '{{firstname.errors.forbiddenName.value}}' is not allowed.
+				</div>
+			</div>
+      <ng-template #valid>
+        <div *ngIf="!firstname.errors" class="validation-valid">Valid name.</div>
+      </ng-template>
+		</div>
+	</form>
+</div>
